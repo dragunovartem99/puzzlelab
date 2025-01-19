@@ -2,20 +2,20 @@ import csv from "csv-parser";
 
 export class Analysis {
 	#dataset;
-	#onData;
-	#onEnd;
+	#onPuzzle;
 
-	constructor({ dataset, onData, onEnd }) {
+	constructor({ dataset, onPuzzle }) {
 		this.#dataset = dataset;
-		this.#onData = onData;
-		this.#onEnd = onEnd;
+		this.#onPuzzle = onPuzzle;
 	}
 
 	run() {
-		this.#dataset
-			.stream()
-			.pipe(csv())
-			.on("data", this.#onData)
-			.on("end", this.#onEnd);
+		return new Promise((resolve) => {
+			this.#dataset
+				.stream()
+				.pipe(csv())
+				.on("data", this.#onPuzzle)
+				.on("end", resolve);
+		});
 	}
 }

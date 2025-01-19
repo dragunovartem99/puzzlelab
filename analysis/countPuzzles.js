@@ -1,13 +1,9 @@
 import { Analysis } from "../objects/Analysis.js";
 
-export function countPuzzles(dataset) {
-	return new Promise((resolve) => {
-		let puzzleCount = 0;
+export async function countPuzzles(dataset) {
+	let puzzleCount = 0;
 
-		new Analysis({
-			dataset,
-			onData: () => puzzleCount++,
-			onEnd: () => resolve(puzzleCount)
-		}).run();
-	});
+	await new Analysis({ dataset, onPuzzle: () => puzzleCount++ }).run();
+
+	return puzzleCount;
 }
