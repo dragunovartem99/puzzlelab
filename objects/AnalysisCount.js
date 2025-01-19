@@ -6,10 +6,8 @@ export class AnalysisCount {
 		this.#analysis = analysis;
 	}
 
-	addCondition(condition) {
-		this.#analysis.addReaction((puzzle) =>
-			condition(puzzle) && this.#count++
-		);
+	addFilter(filter) {
+		this.#analysis.addReaction((puzzle) => filter(puzzle) && this.#count++);
 		return this;
 	}
 

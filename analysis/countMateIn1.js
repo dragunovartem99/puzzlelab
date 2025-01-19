@@ -6,6 +6,6 @@ import { AnalysisCount } from "../objects/AnalysisCount.js";
 new AnalysisCount(
 	new Analysis(mainDataset)
 )
-	.addCondition(({ Themes }) => Themes.includes("mateIn1"))
+	.addFilter(({ Themes }) => Themes.includes("mateIn1"))
 	.run()
 	.then(console.log);
