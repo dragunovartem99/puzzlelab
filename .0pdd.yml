@@ -1,0 +1,16 @@
+threshold: 256
+errors:
+	- dragunovartem99@gmail.com
+alerts:
+	suppress:
+		- on-found-puzzle
+		- on-lost-puzzle
+		- on-scope
+	github:
+		- dragunovartem99
+format:
+		- short-title
+		- title-length=100
+tags:
+	- pdd
+	- bug
