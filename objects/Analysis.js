@@ -8,8 +8,8 @@ export class Analysis {
 		this.#dataset = dataset;
 	}
 
-	addReaction(onPuzzle) {
-		this.#onPuzzle = onPuzzle;
+	addReaction(reaction) {
+		this.#onPuzzle = reaction;
 		return this;
 	}
 
