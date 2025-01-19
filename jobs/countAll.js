@@ -5,5 +5,6 @@ export async function countAll(dataset) {
 	const result = await new AnalysisCount(
 		new Analysis(dataset)
 	).addFilter(() => true).run();
+
 	return result;
 }
