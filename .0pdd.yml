@@ -9,8 +9,8 @@ alerts:
 	github:
 		- dragunovartem99
 format:
-		- short-title
-		- title-length=100
+	- short-title
+	- title-length=100
 tags:
 	- pdd
 	- bug
