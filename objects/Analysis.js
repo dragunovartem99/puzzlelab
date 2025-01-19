@@ -4,9 +4,13 @@ export class Analysis {
 	#dataset;
 	#onPuzzle;
 
-	constructor({ dataset, onPuzzle }) {
+	constructor(dataset) {
 		this.#dataset = dataset;
+	}
+
+	addReaction(onPuzzle) {
 		this.#onPuzzle = onPuzzle;
+		return this;
 	}
 
 	run() {
