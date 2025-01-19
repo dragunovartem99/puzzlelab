@@ -3,27 +3,18 @@ import { mainDatasetHead, mainDatasetTail } from "../datasets.js";
 
 import { countMateIn } from "./countMateIn.js";
 
-test("counts mate in 1 correctly", async () => {
-	const count = await countMateIn(mainDatasetHead, 1);
-	expect(count).toBe(131);
-});
+// TODO: #2 Add test for async functions throwing TypeErrors
 
-test("counts mate in 2 correctly", async () => {
-	const count = await countMateIn(mainDatasetHead, 2);
-	expect(count).toBe(122);
-});
+const basicTests = [
+	{ dataset: mainDatasetTail, movesNumber: 1, expectedCount: 112 },
+	{ dataset: mainDatasetHead, movesNumber: 2, expectedCount: 122 },
+	{ dataset: mainDatasetTail, movesNumber: 3, expectedCount: 34 },
+	{ dataset: mainDatasetHead, movesNumber: 4, expectedCount: 2 },
+	{ dataset: mainDatasetTail, movesNumber: 5, expectedCount: 1 },
+]
 
-test("counts mate in 3 correctly", async () => {
-	const count = await countMateIn(mainDatasetHead, 3);
-	expect(count).toBe(26);
-});
-
-test("counts mate in 4 correctly", async () => {
-	const count = await countMateIn(mainDatasetHead, 4);
-	expect(count).toBe(2);
-});
-
-test("counts mate in 5 correctly", async () => {
-	const count = await countMateIn(mainDatasetTail, 5);
-	expect(count).toBe(1);
+basicTests.forEach(({ dataset, movesNumber, expectedCount }) => {
+	test(`counts mate in ${movesNumber}`, async () => {
+		expect(await countMateIn(dataset, movesNumber)).toBe(expectedCount);
+	})
 });
