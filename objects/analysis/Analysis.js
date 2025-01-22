@@ -2,14 +2,14 @@ import csv from "csv-parser";
 
 export class Analysis {
 	#dataset;
-	#onPuzzle;
+	#reactions = new Set();
 
 	constructor(dataset) {
 		this.#dataset = dataset;
 	}
 
 	addReaction(reaction) {
-		this.#onPuzzle = reaction;
+		this.#reactions.add(reaction);
 		return this;
 	}
 
@@ -18,7 +18,9 @@ export class Analysis {
 			this.#dataset
 				.stream()
 				.pipe(csv())
-				.on("data", this.#onPuzzle)
+				.on("data", (puzzle) => {
+					this.#reactions.forEach((reaction) => reaction(puzzle));
+				})
 				.on("end", resolve);
 		});
 	}

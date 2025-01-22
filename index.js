@@ -15,12 +15,15 @@ async function importJob(jobName) {
 	return await import(dict[jobName]).default;
 }
 
-async function createLab({ jobName, options }) {
+async function createLab(payload) {
+	const { jobName, ...options } = payload;
 	const job = await importJob(jobName);
 	new Lab(job, options).run();
 }
 
-createLab({ jobName: "countAll", options: {} });
+createLab({
+	jobName: "countAll",
+});
 
 function exportLab() {
 	// P.S. Client can export lab in .csv or .json
