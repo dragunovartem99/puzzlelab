@@ -1,9 +1,13 @@
 export class Lab {
-	#dataset;
 	#analysis;
 
-	constructor(dataset) {
-		this.#dataset = dataset;
+	constructor(analysis) {
 		this.#analysis = analysis;
+	}
+
+	addGoal() {}
+
+	async run() {
+		await this.#analysis.run();
 	}
 }

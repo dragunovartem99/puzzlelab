@@ -1,5 +1,5 @@
 import { mainDataset } from "./datasets.js";
-import { Filter } from "./objects/Filter.js";
+import { Analysis } from "./objects/Analysis.js";
 import { Lab } from "./objects/Lab.js";
 
 // TODO: #1 Implement main API
@@ -8,16 +8,15 @@ import { Lab } from "./objects/Lab.js";
 // - Statistics (bound to rating)
 // - List of puzzles found
 // This lab can be rendered on a frontend (digarams / list)
-
-async function createLab(payload) {
+async function createLab(dataset, payload) {
 	const { theme, rating, sortType } = payload;
-
-	const lab = new Lab(mainDataset);
-	const themeFilter = new Filter(theme);
+	new Lab(new Analysis(dataset)).run();
 }
 
-createLab({
+createLab(mainDataset, {
 	theme: "mateIn1",
+	sortType: "hardest",
+	rating: undefined,
 });
 
 function exportLab() {
