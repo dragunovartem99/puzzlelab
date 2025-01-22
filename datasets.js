@@ -5,4 +5,4 @@ const mainDataset = new Dataset("/home/dragunovartem99/Data/lichess_db_puzzle.cs
 const mainDatasetHead = new Dataset("./samples/head-999.csv");
 const mainDatasetTail = new Dataset("./samples/tail-999.csv");
 
-export { mainDataset, mainDatasetHead, mainDatasetTail }
+export { mainDataset, mainDatasetHead, mainDatasetTail };

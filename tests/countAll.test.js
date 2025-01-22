@@ -1,6 +1,6 @@
-import { expect, test } from 'vitest'
+import { expect, test } from "vitest";
 import { mainDatasetHead, mainDatasetTail } from "../datasets.js";
-import countAll from './countAll.js';
+import countAll from "./countAll.js";
 
 test("counts head puzzles", async () => {
 	expect(await countAll(mainDatasetHead)).toBe(999);

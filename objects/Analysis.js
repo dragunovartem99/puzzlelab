@@ -24,7 +24,7 @@ export class Analysis {
 			return;
 		}
 
-		this.#actions.forEach((action) => action(puzzle))
+		this.#actions.forEach((action) => action(puzzle));
 	}
 
 	run() {

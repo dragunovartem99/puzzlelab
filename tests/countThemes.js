@@ -5,7 +5,9 @@ export default async function countThemes(dataset, { themes, operator = "AND" } 
 	let count = 0;
 
 	const filter = new Filter((puzzle) => {
-		if (!themes || !themes.length) { return; }
+		if (!themes || !themes.length) {
+			return;
+		}
 
 		const method = { AND: "every", OR: "some" }[operator];
 
