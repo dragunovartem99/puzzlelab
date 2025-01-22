@@ -20,12 +20,11 @@ export class Analysis {
 	}
 
 	#reactTo(puzzle) {
-		(
-			this.#filters.length === 0 ||
-			this.#filters.every((filter) => filter.check(puzzle))
-		) && (
-			this.#actions.forEach((action) => action(puzzle))
-		);
+		if (this.#filters.length && this.#filters.some((filter) => !filter.check(puzzle))) {
+			return;
+		}
+
+		this.#actions.forEach((action) => action(puzzle))
 	}
 
 	run() {
