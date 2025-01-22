@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { mainDatasetHead, mainDatasetTail } from "../../datasets.js";
+import { mainDatasetHead, mainDatasetTail } from "../datasets.js";
 
 import countThemes from "./countThemes.js";
 
@@ -44,7 +44,6 @@ basicTests.forEach((entry) => {
 	const { name, dataset, filter, expectedCount } = entry;
 
 	test(name, async () => {
-		const count = await countThemes(dataset, filter).run();
-		expect(count).toBe(expectedCount);
+		expect(await countThemes(dataset, filter)).toBe(expectedCount);
 	})
 });

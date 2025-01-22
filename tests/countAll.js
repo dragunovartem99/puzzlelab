@@ -1,4 +1,4 @@
-import { Analysis } from "../../objects/analysis/Analysis.js";
+import { Analysis } from "../objects/Analysis.js";
 
 export default async function(dataset) {
 	let count = 0;
