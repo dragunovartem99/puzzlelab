@@ -22,7 +22,7 @@ export class Analysis {
 	#reactTo(puzzle) {
 		(
 			this.#filters.length === 0 ||
-			this.#filters.every((filter) => filter(puzzle))
+			this.#filters.every((filter) => filter.check(puzzle))
 		) && (
 			this.#actions.forEach((action) => action(puzzle))
 		);
