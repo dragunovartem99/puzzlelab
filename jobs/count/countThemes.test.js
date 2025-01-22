@@ -7,7 +7,9 @@ const basicTests = [
 	{
 		name: "returns 0 for empty array",
 		dataset: mainDatasetHead,
-		themes: [],
+		filter: {
+			themes: [],
+		},
 		expectedCount: 0
 	},
 	{
@@ -18,20 +20,26 @@ const basicTests = [
 	{
 		name: "counts mate in 2",
 		dataset: mainDatasetHead,
-		themes: [ "mateIn2" ],
+		filter: {
+			themes: [ "mateIn2" ],
+		},
 		expectedCount: 122,
 	},
 	{
 		name: "counts mate in 5",
 		dataset: mainDatasetTail,
-		themes: [ "mateIn5" ],
+		filter: {
+			themes: [ "mateIn5" ],
+		},
 		expectedCount: 1,
 	}
 ]
 
-basicTests.forEach(({ name, dataset, themes, expectedCount }) => {
+basicTests.forEach((entry) => {
+	const { name, dataset, filter, expectedCount } = entry;
+
 	test(name, async () => {
-		const count = await countThemes(dataset, themes).run();
+		const count = await countThemes(dataset, filter).run();
 		expect(count).toBe(expectedCount);
 	})
 });
