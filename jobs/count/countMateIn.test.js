@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
-import { mainDatasetHead, mainDatasetTail } from "../datasets.js";
+import { mainDatasetHead, mainDatasetTail } from "../../datasets.js";
 
-import { countMateIn } from "./countMateIn.js";
+import countMateIn from "./countMateIn.js";
 
 // TODO: #2 Add test for async functions throwing TypeErrors
 
@@ -15,6 +15,7 @@ const basicTests = [
 
 basicTests.forEach(({ dataset, movesNumber, expectedCount }) => {
 	test(`counts mate in ${movesNumber}`, async () => {
-		expect(await countMateIn(dataset, movesNumber)).toBe(expectedCount);
+		const count = await countMateIn(dataset, { movesNumber }).run();
+		expect(count).toBe(expectedCount);
 	})
 });
