@@ -1,14 +1,13 @@
 export class Lab {
-	#jobName;
-	#options;
+	#dataset;
+	#job;
 
-	constructor(jobName, options) {
-		this.#jobName = jobName;
-		this.#options = options;
+	constructor(dataset, job) {
+		this.#dataset = dataset;
+		this.#job = job;
 	}
 
 	run() {
-		console.log(this.#jobName);
-		console.log(this.#options);
+		this.#job.run();
 	}
 }
