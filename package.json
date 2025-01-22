@@ -1,21 +1,24 @@
 {
-  "name": "puzzlelab",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "type": "module",
-  "dependencies": {
-    "csv-parser": "^3.1.0"
-  },
-  "devDependencies": {
-    "@vitest/coverage-v8": "^3.0.2",
-    "vitest": "^3.0.2"
-  }
+	"name": "puzzlelab",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "vitest",
+		"coverage": "vitest run --coverage"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"type": "module",
+	"prettier": "@dragunovartem99/prettier-config",
+	"dependencies": {
+		"csv-parser": "^3.1.0"
+	},
+	"devDependencies": {
+		"@dragunovartem99/prettier-config": "^1.0.0",
+		"@vitest/coverage-v8": "^3.0.2",
+		"prettier": "3.4.2",
+		"vitest": "^3.0.2"
+	}
 }
