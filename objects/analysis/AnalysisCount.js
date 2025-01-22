@@ -7,7 +7,7 @@ export class AnalysisCount {
 	}
 
 	addFilter(filter) {
-		this.#analysis.addReaction((puzzle) => filter(puzzle) && this.#count++);
+		this.#analysis.addAction((puzzle) => filter(puzzle) && this.#count++);
 		return this;
 	}
 

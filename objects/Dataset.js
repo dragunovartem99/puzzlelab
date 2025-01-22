@@ -7,7 +7,7 @@ export class Dataset {
 		this.#path = path;
 	}
 
-	stream() {
+	read() {
 		return fs.createReadStream(this.#path);
 	}
 }

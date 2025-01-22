@@ -2,9 +2,9 @@ import { Analysis } from "../../objects/analysis/Analysis.js";
 import { AnalysisCount } from "../../objects/analysis/AnalysisCount.js";
 
 export default function(dataset) {
-	function filter() {
-		return true;
-	}
+	let count = 0;
 
-	return new AnalysisCount(new Analysis(dataset)).addFilter(filter);
+	new Analysis(dataset).addAction(() => count++);
+
+	return count;
 }

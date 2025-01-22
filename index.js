@@ -1,3 +1,5 @@
+import { mainDataset } from "./datasets.js";
+import { Filter } from "./objects/Filter.js";
 import { Lab } from "./objects/Lab.js";
 
 // TODO: #1 Implement main API
@@ -7,22 +9,16 @@ import { Lab } from "./objects/Lab.js";
 // - List of puzzles found
 // This lab can be rendered on a frontend (digarams / list)
 
-const dict = {
-	countAll: "./jobs/count/countAll.js"
-};
-
-async function importJob(jobName) {
-	return await import(dict[jobName]).default;
-}
-
 async function createLab(payload) {
-	const { jobName, ...options } = payload;
-	const job = await importJob(jobName);
-	new Lab(job, options).run();
+	const { theme, rating, sortType } = payload;
+
+	const lab = new Lab(mainDataset);
+	const themeFilter = new Filter(theme);
+
 }
 
 createLab({
-	jobName: "countAll",
+	theme: "mateIn1",
 });
 
 function exportLab() {

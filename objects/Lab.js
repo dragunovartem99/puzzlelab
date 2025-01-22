@@ -1,13 +1,9 @@
 export class Lab {
 	#dataset;
-	#job;
+	#analysis;
 
-	constructor(dataset, job) {
+	constructor(dataset) {
 		this.#dataset = dataset;
-		this.#job = job;
-	}
-
-	run() {
-		this.#job.run();
+		this.#analysis = analysis;
 	}
 }
