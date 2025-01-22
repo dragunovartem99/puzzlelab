@@ -20,7 +20,7 @@ export class Analysis {
 	}
 
 	#reactTo(puzzle) {
-		if (this.#filters.length && this.#filters.some((filter) => !filter.check(puzzle))) {
+		if (this.#filters.some((filter) => !filter.check(puzzle))) {
 			return;
 		}
 
