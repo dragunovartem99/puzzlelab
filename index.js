@@ -14,7 +14,6 @@ async function createLab(payload) {
 
 	const lab = new Lab(mainDataset);
 	const themeFilter = new Filter(theme);
-
 }
 
 createLab({
