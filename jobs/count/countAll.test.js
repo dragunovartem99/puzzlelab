@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { mainDatasetHead, mainDatasetTail } from "../datasets.js";
+import { mainDatasetHead, mainDatasetTail } from "../../datasets.js";
 
 import { countAll } from "./countAll.js";
 

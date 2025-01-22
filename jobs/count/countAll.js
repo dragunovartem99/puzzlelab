@@ -1,5 +1,5 @@
-import { Analysis } from "../objects/Analysis.js";
-import { AnalysisCount } from "../objects/AnalysisCount.js";
+import { Analysis } from "../../objects/analysis/Analysis.js";
+import { AnalysisCount } from "../../objects/analysis/AnalysisCount.js";
 
 export async function countAll(dataset) {
 	const result = await new AnalysisCount(
