@@ -17,10 +17,7 @@ export default async function countThemes(dataset, { themes, operator = "AND" } 
 
 	const action = new Action(() => count++);
 
-	await new Analysis(dataset)
-		.addAction(action)
-		.addFilter(filter)
-		.run();
+	await new Analysis(dataset).addAction(action).addFilter(filter).run();
 
 	return count;
 }

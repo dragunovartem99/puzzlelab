@@ -1,4 +1,4 @@
-import csv from "csv-parser";
+import { Dataflow } from "./Dataflow";
 
 export class Analysis {
 	#dataset;
@@ -19,7 +19,7 @@ export class Analysis {
 		return this;
 	}
 
-	#reactTo(puzzle) {
+	#analyze(puzzle) {
 		if (this.#filters.some((filter) => !filter.check(puzzle))) {
 			return;
 		}
@@ -27,13 +27,7 @@ export class Analysis {
 		this.#actions.forEach((action) => action.perform(puzzle));
 	}
 
-	run() {
-		return new Promise((resolve) => {
-			this.#dataset
-				.read()
-				.pipe(csv())
-				.on("data", (puzzle) => this.#reactTo(puzzle))
-				.on("end", resolve);
-		});
+	async run() {
+		return await new Dataflow(this.#dataset, (puzzle) => this.#analyze(puzzle)).run();
 	}
 }
