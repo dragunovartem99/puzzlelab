@@ -11,11 +11,7 @@ export class Dataflow {
 
 	run() {
 		return new Promise((resolve) => {
-			this.#dataset
-				.read()
-				.pipe(csv())
-				.on("data", (puzzle) => this.#onData(puzzle))
-				.on("end", resolve);
+			this.#dataset.read().pipe(csv()).on("data", this.#onData).on("end", resolve);
 		});
 	}
 }
