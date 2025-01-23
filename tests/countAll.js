@@ -1,9 +1,12 @@
 import { Analysis } from "../objects/Analysis.js";
+import { Action } from "../objects/Action.js";
 
 export default async function (dataset) {
 	let count = 0;
 
-	await new Analysis(dataset).addAction(() => count++).run();
+	const action = new Action(() => count++);
+
+	await new Analysis(dataset).addAction(action).run();
 
 	return count;
 }

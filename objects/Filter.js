@@ -1,11 +1,11 @@
 export class Filter {
-	#validation;
+	#filter;
 
-	constructor(validation) {
-		this.#validation = validation;
+	constructor(filter) {
+		this.#filter = filter;
 	}
 
 	check(puzzle) {
-		return this.#validation(puzzle);
+		return this.#filter(puzzle);
 	}
 }

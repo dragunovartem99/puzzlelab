@@ -1,5 +1,6 @@
 import { Analysis } from "../objects/Analysis.js";
 import { Filter } from "../objects/Filter.js";
+import { Action } from "../objects/Action.js";
 
 export default async function countThemes(dataset, { themes, operator = "AND" } = {}) {
 	let count = 0;
@@ -14,8 +15,10 @@ export default async function countThemes(dataset, { themes, operator = "AND" } 
 		return themes[method]((theme) => puzzle.Themes.includes(theme));
 	});
 
+	const action = new Action(() => count++);
+
 	await new Analysis(dataset)
-		.addAction(() => count++)
+		.addAction(action)
 		.addFilter(filter)
 		.run();
 
