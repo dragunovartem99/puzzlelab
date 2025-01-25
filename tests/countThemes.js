@@ -1,21 +1,14 @@
-import { AnalysisFiltered } from "../objects/AnalysisFiltered.js";
+import { Lab } from "../objects/Lab.js";
+import { Requirements } from "../objects/Requirements.js";
 import { Instruction } from "../objects/Instruction.js";
-import { Filter } from "../objects/Filter.js";
 
-export default async function (dataset, { themes, operator = "AND" } = {}) {
+export default async function (dataset, payload) {
 	let count = 0;
 
 	const instruction = new Instruction(() => count++);
+	const requirements = new Requirements(payload);
 
-	const filter = new Filter((puzzle) => {
-		if (!themes?.length) return false;
-
-		const method = { AND: "every", OR: "some" }[operator];
-
-		return themes[method]((theme) => puzzle.includes(theme));
-	});
-
-	await new AnalysisFiltered(dataset).addInstruction(instruction).addFilter(filter).run();
+	await new Lab(dataset, requirements, instruction).run();
 
 	return count;
 }

@@ -4,59 +4,59 @@ import countThemes from "./countThemes.js";
 
 const basicTests = [
 	{
-		title: "no filter object",
+		name: "no payload",
 		dataset: mainDatasetTail,
 		result: 0,
 	},
 	{
-		title: "empty filter object",
+		name: "empty payload",
 		dataset: mainDatasetHead,
-		filter: {},
+		payload: {},
 		result: 0,
 	},
 	{
-		title: "empty themes array",
+		name: "empty themes string",
 		dataset: mainDatasetTail,
-		filter: { themes: [] },
+		payload: { themes: "" },
 		result: 0,
 	},
 	{
-		title: "counts mate in 2",
+		name: "counts mate in 2",
 		dataset: mainDatasetHead,
-		filter: { themes: ["mateIn2"] },
+		payload: { themes: "mateIn2" },
 		result: 122,
 	},
 	{
-		title: "counts mate in 5",
+		name: "counts mate in 5",
 		dataset: mainDatasetTail,
-		filter: {
-			themes: ["mateIn5"],
+		payload: {
+			themes: "mateIn5",
 		},
 		result: 1,
 	},
 	{
-		title: "AND operator",
+		name: "AND operator",
 		dataset: mainDatasetHead,
-		filter: {
-			themes: ["endgame", "mateIn2"],
+		payload: {
+			themes: "endgame,mateIn2",
 		},
 		result: 75,
 	},
 	{
-		title: "OR operator",
+		name: "OR operator",
 		dataset: mainDatasetHead,
-		filter: {
-			themes: ["endgame", "mateIn2"],
-			operator: "OR",
+		payload: {
+			themes: "endgame,mateIn2",
+			themesOperator: "OR",
 		},
 		result: 532,
 	},
 ];
 
 basicTests.forEach((entry) => {
-	const { title, dataset, filter, result } = entry;
+	const { name, dataset, payload, result } = entry;
 
-	test(title, async () => {
-		expect(await countThemes(dataset, filter)).toBe(result);
+	test(name, async () => {
+		expect(await countThemes(dataset, payload)).toBe(result);
 	});
 });

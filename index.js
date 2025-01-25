@@ -1,5 +1,7 @@
 import { mainDataset } from "./datasets.js";
-import createLab from "./tests/createLab.js";
+
+import { Lab } from "./objects/Lab.js";
+import { Requirements } from "./objects/Requirements.js";
 
 // TODO: #1 Implement main API
 // Client picks .csv dataset (lichess) and requirements
@@ -7,6 +9,13 @@ import createLab from "./tests/createLab.js";
 // - Statistics (bound to rating)
 // - List of puzzles found
 // This lab can be rendered on a frontend (digarams / list)
+async function createLab (dataset, payload) {
+	const requirements = new Requirements(payload);
+	const mock = { perform() {} };
+
+	await new Lab(dataset, requirements, mock).run();
+	return "End";
+}
 createLab(mainDataset, {
 	goal: "count",
 	themes: "mateIn1",

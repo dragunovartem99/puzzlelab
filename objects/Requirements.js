@@ -10,7 +10,7 @@ export class Requirements {
 	}
 
 	getFilter() {
-		const themes = this.#themes.split(",");
+		const themes = this.#themes && this.#themes.split(",");
 
 		return new Filter((puzzle) => {
 			if (!themes?.length) return false;
