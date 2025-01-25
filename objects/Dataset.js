@@ -7,7 +7,7 @@ export class Dataset {
 		this.#path = path;
 	}
 
-	read() {
-		return createReadStream(this.#path);
+	read({ encoding }) {
+		return createReadStream(this.#path, { encoding });
 	}
 }

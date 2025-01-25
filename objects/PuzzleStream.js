@@ -10,7 +10,7 @@ export class PuzzleStream {
 	}
 
 	#manageChunk(chunk) {
-		const puzzles = chunk.toString().split(/\n/);
+		const puzzles = chunk.split("\n");
 
 		if (!this.#headers) {
 			this.#headers = puzzles.shift();
@@ -31,7 +31,7 @@ export class PuzzleStream {
 	run() {
 		return new Promise((resolve) =>
 			this.#dataset
-				.read()
+				.read({ encoding: "ascii" })
 				.on("data", (chunk) => this.#manageChunk(chunk))
 				.on("end", resolve),
 		);
