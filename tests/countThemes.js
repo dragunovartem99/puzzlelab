@@ -8,7 +8,7 @@ export default async function (dataset, { themes, operator = "AND" } = {}) {
 	const instruction = new Instruction(() => count++);
 
 	const filter = new Filter((puzzle) => {
-		if (!themes?.length) return;
+		if (!themes?.length) return false;
 
 		const method = { AND: "every", OR: "some" }[operator];
 
