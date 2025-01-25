@@ -1,10 +1,14 @@
 import { Transform } from "node:stream";
 
-export class Transformer extends Transform {
+export class Stage extends Transform {
 	#corruptedPuzzle = null;
 
 	constructor() {
 		super({ objectMode: true });
+	}
+
+	_getPuzzles(puzzles) {
+		return puzzles;
 	}
 
 	_transform(chunk, _, callback) {
@@ -12,12 +16,13 @@ export class Transformer extends Transform {
 
 		if (this.#corruptedPuzzle) {
 			puzzles[0] = this.#corruptedPuzzle + puzzles[0];
-			this.#corruptedPuzzle = 0;
+			this.#corruptedPuzzle = null;
 		}
 
 		this.#corruptedPuzzle = puzzles.pop();
 
-		this.push(puzzles.join("\n") + "\n");
+		this.push(this._getPuzzles(puzzles).join("\n") + "\n");
+
 		callback();
 	}
 }

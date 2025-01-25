@@ -1,18 +1,21 @@
+import { pipeline } from 'node:stream/promises';
+
 export class Flow {
 	#dataset;
-	#transformer;
 	#writeStream;
+	#stages;
 
-	constructor(dataset, transformer, writeStream) {
+	constructor(dataset, writeStream, ...stages) {
 		this.#dataset = dataset;
-		this.#transformer = transformer;
 		this.#writeStream = writeStream;
+		this.#stages = stages;
 	}
 
 	run() {
-		this.#dataset
-			.read()
-			.pipe(this.#transformer)
-			.pipe(this.#writeStream)
+		pipeline(
+			this.#dataset.read(),
+			...this.#stages,
+			this.#writeStream
+		);
 	}
 }
