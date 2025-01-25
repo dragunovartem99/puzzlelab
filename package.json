@@ -4,14 +4,15 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "vitest",
-		"coverage": "vitest run --coverage"
+		"coverage": "vitest run --coverage",
+		"prettier": "prettier . --write"
 	},
+	"prettier": "@dragunovartem99/prettier-config",
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"description": "",
 	"type": "module",
-	"prettier": "@dragunovartem99/prettier-config",
 	"devDependencies": {
 		"@dragunovartem99/prettier-config": "^1.0.0",
 		"@vitest/coverage-v8": "^3.0.2",
