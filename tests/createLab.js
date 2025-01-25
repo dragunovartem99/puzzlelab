@@ -9,9 +9,7 @@ export default async function (dataset, payload) {
 
 	let count = 0;
 
-	const instruction = new Instruction(() => {
-		count++;
-	});
+	const instruction = new Instruction(() => count++);
 
 	const filter = new Filter((puzzle) => {
 		if (!themes?.length) return false;
