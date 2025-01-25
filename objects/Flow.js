@@ -1,4 +1,4 @@
-import { pipeline } from 'node:stream/promises';
+import { pipeline } from "node:stream/promises";
 
 export class Flow {
 	#dataset;
@@ -12,6 +12,6 @@ export class Flow {
 	}
 
 	async run() {
-		await pipeline( this.#dataset.read(), ...this.#stages, this.#writeStream);
+		await pipeline(this.#dataset.read(), ...this.#stages, this.#writeStream);
 	}
 }
