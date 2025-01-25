@@ -1,6 +1,7 @@
 import { expect, test } from "vitest";
 import { mainDataset, mainDatasetHead, mainDatasetTail } from "../datasets.js";
-import { PuzzleStream } from "../objects/PuzzleStream.js";
+
+import nodeCountAll from "./nodeCountAll.js";
 
 const basicTests = [
 	{ title: "head", dataset: mainDatasetHead, result: 999 },
@@ -12,8 +13,6 @@ basicTests.forEach((entry) => {
 	const { title, dataset, result } = entry;
 
 	test(title, async () => {
-		let count = 0;
-		await new PuzzleStream(dataset, () => count++).run();
-		expect(count).toBe(result);
+		expect(await nodeCountAll(dataset)).toBe(result);
 	});
 });
