@@ -4,30 +4,30 @@ import countThemes from "./countThemes.js";
 
 const basicTests = [
 	{
-		name: "no payload",
+		title: "no payload",
 		dataset: mainDatasetTail,
 		result: 0,
 	},
 	{
-		name: "empty payload",
+		title: "empty payload",
 		dataset: mainDatasetHead,
 		payload: {},
 		result: 0,
 	},
 	{
-		name: "empty themes string",
+		title: "empty themes string",
 		dataset: mainDatasetTail,
 		payload: { themes: "" },
 		result: 0,
 	},
 	{
-		name: "counts mate in 2",
+		title: "counts mate in 2",
 		dataset: mainDatasetHead,
 		payload: { themes: "mateIn2" },
 		result: 122,
 	},
 	{
-		name: "counts mate in 5",
+		title: "counts mate in 5",
 		dataset: mainDatasetTail,
 		payload: {
 			themes: "mateIn5",
@@ -35,7 +35,7 @@ const basicTests = [
 		result: 1,
 	},
 	{
-		name: "AND operator",
+		title: "AND operator",
 		dataset: mainDatasetHead,
 		payload: {
 			themes: "endgame,mateIn2",
@@ -43,7 +43,7 @@ const basicTests = [
 		result: 75,
 	},
 	{
-		name: "OR operator",
+		title: "OR operator",
 		dataset: mainDatasetHead,
 		payload: {
 			themes: "endgame,mateIn2",
@@ -54,9 +54,9 @@ const basicTests = [
 ];
 
 basicTests.forEach((entry) => {
-	const { name, dataset, payload, result } = entry;
+	const { title, dataset, payload, result } = entry;
 
-	test(name, async () => {
+	test(title, async () => {
 		expect(await countThemes(dataset, payload)).toBe(result);
 	});
 });

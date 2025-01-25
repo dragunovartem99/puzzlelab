@@ -12,9 +12,6 @@
 	"description": "",
 	"type": "module",
 	"prettier": "@dragunovartem99/prettier-config",
-	"dependencies": {
-		"csv-parser": "^3.1.0"
-	},
 	"devDependencies": {
 		"@dragunovartem99/prettier-config": "^1.0.0",
 		"@vitest/coverage-v8": "^3.0.2",

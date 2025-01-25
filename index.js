@@ -9,7 +9,7 @@ import { Requirements } from "./objects/Requirements.js";
 // - Statistics (bound to rating)
 // - List of puzzles found
 // This lab can be rendered on a frontend (digarams / list)
-async function createLab (dataset, payload) {
+async function createLab(dataset, payload) {
 	const requirements = new Requirements(payload);
 	const mock = { perform() {} };
 
