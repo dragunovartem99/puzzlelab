@@ -2,16 +2,19 @@ import { pipeline } from "node:stream/promises";
 
 export class Flow {
 	#dataset;
-	#writeStream;
 	#stages;
+	#writeStream;
 
-	constructor(dataset, writeStream, ...stages) {
+	constructor(dataset, ...stages) {
 		this.#dataset = dataset;
-		this.#writeStream = writeStream;
 		this.#stages = stages;
 	}
 
+	setWriteStream() {
+		this.#writeStream = writeStream;
+	}
+
 	async run() {
-		await pipeline(this.#dataset.read(), ...this.#stages, this.#writeStream);
+		await pipeline(this.#dataset.read(), ...this.#stages);
 	}
 }

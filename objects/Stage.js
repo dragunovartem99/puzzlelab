@@ -1,8 +1,9 @@
 import { Transform } from "node:stream";
 
 export class Stage extends Transform {
-	#corruptedPuzzle = null;
 	#performance;
+	#headers = null;
+	#corruptedPuzzle = null;
 
 	constructor(performance) {
 		super({ objectMode: true });
@@ -15,6 +16,8 @@ export class Stage extends Transform {
 
 	_transform(chunk, _, callback) {
 		const puzzles = chunk.split("\n");
+
+		this.#headers ?? (this.#headers = puzzles.shift());
 
 		if (this.#corruptedPuzzle) {
 			puzzles[0] = this.#corruptedPuzzle + puzzles[0];

@@ -9,6 +9,6 @@ function performance(puzzles) {
 	return puzzles;
 }
 
-await new Flow(mainDatasetHead, process.stdout, new Stage(performance)).run();
+await new Flow(mainDatasetHead, new Stage(performance)).run();
 
 console.log(count);
