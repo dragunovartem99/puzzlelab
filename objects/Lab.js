@@ -1,13 +1,20 @@
-export class Lab {
-	#analysis;
+import { AnalysisFiltered } from "./AnalysisFiltered.js";
 
-	constructor(analysis) {
-		this.#analysis = analysis;
+export class Lab {
+	#dataset;
+	#requirements;
+	#instruction;
+
+	constructor(dataset, requirements, instruction) {
+		this.#dataset = dataset;
+		this.#requirements = requirements;
+		this.#instruction = instruction;
 	}
 
-	addGoal() {}
-
 	async run() {
-		await this.#analysis.run();
+		return await new AnalysisFiltered(this.#dataset)
+			.addInstruction(this.#instruction)
+			.addFilter(this.#requirements.getFilter())
+			.run();
 	}
 }

@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import { createReadStream } from "node:fs";
 
 export class Dataset {
 	#path;
@@ -8,6 +8,6 @@ export class Dataset {
 	}
 
 	read() {
-		return fs.createReadStream(this.#path);
+		return createReadStream(this.#path);
 	}
 }

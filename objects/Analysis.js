@@ -1,33 +1,23 @@
-import { Dataflow } from "./Dataflow";
+import { PuzzleStream } from "./PuzzleStream.js";
 
 export class Analysis {
 	#dataset;
-	#actions = new Set();
-	#filters = [];
+	_instructions = new Set();
 
 	constructor(dataset) {
 		this.#dataset = dataset;
 	}
 
-	addAction(action) {
-		this.#actions.add(action);
+	addInstruction(action) {
+		this._instructions.add(action);
 		return this;
 	}
 
-	addFilter(filter) {
-		this.#filters.push(filter);
-		return this;
-	}
-
-	#analyze(puzzle) {
-		if (this.#filters.some((filter) => !filter.check(puzzle))) {
-			return;
-		}
-
-		this.#actions.forEach((action) => action.perform(puzzle));
+	_analyze(puzzle) {
+		this._instructions.forEach((instruction) => instruction.perform(puzzle));
 	}
 
 	async run() {
-		return await new Dataflow(this.#dataset, (puzzle) => this.#analyze(puzzle)).run();
+		return await new PuzzleStream(this.#dataset, (puzzle) => this._analyze(puzzle)).run();
 	}
 }

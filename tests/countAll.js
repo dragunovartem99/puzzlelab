@@ -1,12 +1,12 @@
 import { Analysis } from "../objects/Analysis.js";
-import { Action } from "../objects/Action.js";
+import { Instruction } from "../objects/Instruction.js";
 
 export default async function (dataset) {
 	let count = 0;
 
-	const action = new Action(() => count++);
+	const instruction = new Instruction(() => count++);
 
-	await new Analysis(dataset).addAction(action).run();
+	await new Analysis(dataset).addInstruction(instruction).run();
 
 	return count;
 }
