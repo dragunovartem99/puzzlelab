@@ -1,8 +1,8 @@
-import { NodeAnalysis } from "./NodeAnalysis";
+import { Analysis } from "./Analysis.js";
 
-export class FilteredAnalysis extends NodeAnalysis {
+export class AnalysisFiltered extends Analysis {
 	#filters = [];
-	
+
 	constructor(dataset) {
 		super(dataset);
 	}

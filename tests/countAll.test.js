@@ -1,11 +1,18 @@
 import { expect, test } from "vitest";
-import { mainDatasetHead, mainDatasetTail } from "../datasets.js";
+import { mainDataset, mainDatasetHead, mainDatasetTail } from "../datasets.js";
+
 import countAll from "./countAll.js";
 
-test("counts head puzzles", async () => {
-	expect(await countAll(mainDatasetHead)).toBe(999);
-});
+const basicTests = [
+	{ title: "head", dataset: mainDatasetHead, result: 999 },
+	{ title: "tail", dataset: mainDatasetTail, result: 999 },
+	// { title: "main", dataset: mainDataset, result: 4_557_000 },
+];
 
-test("counts tail puzzles", async () => {
-	expect(await countAll(mainDatasetTail)).toBe(999);
+basicTests.forEach((entry) => {
+	const { title, dataset, result } = entry;
+
+	test(title, async () => {
+		expect(await countAll(dataset)).toBe(result);
+	});
 });

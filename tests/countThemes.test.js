@@ -3,8 +3,17 @@ import { mainDatasetHead, mainDatasetTail } from "../datasets.js";
 import countThemes from "./countThemes.js";
 
 const basicTests = [
-	{ name: "no filter object", dataset: mainDatasetTail, expectedCount: 0 },
-	{ name: "empty filter object", dataset: mainDatasetHead, filter: {}, expectedCount: 0 },
+	{
+		name: "no filter object",
+		dataset: mainDatasetTail,
+		expectedCount: 0,
+	},
+	{
+		name: "empty filter object",
+		dataset: mainDatasetHead,
+		filter: {},
+		expectedCount: 0,
+	},
 	{
 		name: "empty themes array",
 		dataset: mainDatasetTail,
