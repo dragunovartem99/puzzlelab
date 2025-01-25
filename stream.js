@@ -1,25 +1,33 @@
-import { Readable } from "node:stream";
 import { createReadStream } from "node:fs";
 
 class PuzzleStream {
 	#csv;
 	#headers;
-	#brokenPuzzle;
+	#corruptedPuzzle = null;
 
 	constructor(csv) {
 		this.#csv = csv;
 	}
 
+	#manageChunk(chunk) {
+		const puzzles = chunk.toString().split(/\n/);
+
+		if (!this.#headers) {
+			this.#headers = puzzles.shift();
+		}
+
+		if (this.#corruptedPuzzle) {
+			puzzles[0] = this.#corruptedPuzzle + puzzles[0];
+			this.#corruptedPuzzle = null;
+		}
+
+		this.#corruptedPuzzle = puzzles.pop();
+	}
+
 	flow() {
-		let count = 0;
 		createReadStream(this.#csv)
-			.on("data", (chunk) => {
-				const puzzles = chunk.toString().split(/\n/);
-				this.#brokenPuzzle = puzzles.pop();
-				count++
-			})
+			.on("data", (chunk) => this.#manageChunk(chunk))
 			.on("end", () => {
-				console.log(count);
 				console.timeEnd("read");
 			});
 	}
@@ -27,5 +35,6 @@ class PuzzleStream {
 
 console.time("read");
 
-new PuzzleStream("/home/dragunovartem99/Data/lichess_db_puzzle.csv").flow();
+new PuzzleStream("./samples/head-999.csv").flow();
+//new PuzzleStream("/home/dragunovartem99/Data/lichess_db_puzzle.csv").flow();
 
