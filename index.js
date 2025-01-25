@@ -1,23 +1,18 @@
 import { mainDataset } from "./datasets.js";
-import { Analysis } from "./objects/Analysis.js";
-import { Lab } from "./objects/Lab.js";
+import createLab from "./tests/createLab.js";
 
 // TODO: #1 Implement main API
-// Client picks .csv dataset (lichess) and desired job
+// Client picks .csv dataset (lichess) and desired goal
 // Application serves the client with "lab" (analysis):
 // - Statistics (bound to rating)
 // - List of puzzles found
 // This lab can be rendered on a frontend (digarams / list)
-async function createLab(dataset, payload) {
-	const { theme, rating, sortType } = payload;
-	new Lab(new Analysis(dataset)).run();
-}
-
 createLab(mainDataset, {
-	theme: "mateIn1",
+	goal: "count",
+	themes: "mateIn1",
 	sortType: "hardest",
 	rating: undefined,
-});
+}).then(console.log);
 
 function exportLab() {
 	// P.S. Client can export lab in .csv or .json
