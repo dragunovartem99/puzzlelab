@@ -4,59 +4,59 @@ import countThemes from "./countThemes.js";
 
 const basicTests = [
 	{
-		name: "no filter object",
+		title: "no filter object",
 		dataset: mainDatasetTail,
-		expectedCount: 0,
+		result: 0,
 	},
 	{
-		name: "empty filter object",
+		title: "empty filter object",
 		dataset: mainDatasetHead,
 		filter: {},
-		expectedCount: 0,
+		result: 0,
 	},
 	{
-		name: "empty themes array",
+		title: "empty themes array",
 		dataset: mainDatasetTail,
 		filter: { themes: [] },
-		expectedCount: 0,
+		result: 0,
 	},
 	{
-		name: "counts mate in 2",
+		title: "counts mate in 2",
 		dataset: mainDatasetHead,
 		filter: { themes: ["mateIn2"] },
-		expectedCount: 122,
+		result: 122,
 	},
 	{
-		name: "counts mate in 5",
+		title: "counts mate in 5",
 		dataset: mainDatasetTail,
 		filter: {
 			themes: ["mateIn5"],
 		},
-		expectedCount: 1,
+		result: 1,
 	},
 	{
-		name: "AND operator",
+		title: "AND operator",
 		dataset: mainDatasetHead,
 		filter: {
 			themes: ["endgame", "mateIn2"],
 		},
-		expectedCount: 75,
+		result: 75,
 	},
 	{
-		name: "OR operator",
+		title: "OR operator",
 		dataset: mainDatasetHead,
 		filter: {
 			themes: ["endgame", "mateIn2"],
 			operator: "OR",
 		},
-		expectedCount: 532,
+		result: 532,
 	},
 ];
 
 basicTests.forEach((entry) => {
-	const { name, dataset, filter, expectedCount } = entry;
+	const { title, dataset, filter, result } = entry;
 
-	test(name, async () => {
-		expect(await countThemes(dataset, filter)).toBe(expectedCount);
+	test(title, async () => {
+		expect(await countThemes(dataset, filter)).toBe(result);
 	});
 });
