@@ -2,22 +2,22 @@ import { PuzzleStream } from "./PuzzleStream.js";
 
 export class NodeAnalysis {
 	#dataset;
-	#actions = new Set();
+	_actions = new Set();
 
 	constructor(dataset) {
 		this.#dataset = dataset;
 	}
 
 	addAction(action) {
-		this.#actions.add(action);
+		this._actions.add(action);
 		return this;
 	}
 
-	#analyze(puzzle) {
-		this.#actions.forEach((action) => action.perform(puzzle));
+	_analyze(puzzle) {
+		this._actions.forEach((action) => action.perform(puzzle));
 	}
 
 	async run() {
-		return await new PuzzleStream(this.#dataset, (puzzle) => this.#analyze(puzzle)).run();
+		return await new PuzzleStream(this.#dataset, (puzzle) => this._analyze(puzzle)).run();
 	}
 }
