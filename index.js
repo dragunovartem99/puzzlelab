@@ -2,7 +2,7 @@ import { mainDataset } from "./datasets.js";
 import createLab from "./tests/createLab.js";
 
 // TODO: #1 Implement main API
-// Client picks .csv dataset (lichess) and desired goal
+// Client picks .csv dataset (lichess) and requirements
 // Application serves the client with "lab" (analysis):
 // - Statistics (bound to rating)
 // - List of puzzles found
