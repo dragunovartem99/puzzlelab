@@ -1,10 +1,12 @@
-export class DataStream {
+export class PuzzleStream {
 	#dataset;
-	#headers;
-	#corruptedPuzzle;
+	#onPuzzle;
+	#headers = null;
+	#corruptedPuzzle = null;
 
-	constructor(dataset) {
+	constructor(dataset, onPuzzle) {
 		this.#dataset = dataset;
+		this.#onPuzzle = onPuzzle;
 	}
 
 	#manageChunk(chunk) {
@@ -20,6 +22,10 @@ export class DataStream {
 		}
 
 		this.#corruptedPuzzle = puzzles.pop();
+
+		if (this.#onPuzzle) {
+			puzzles.forEach(this.#onPuzzle);
+		}
 	}
 
 	run() {
