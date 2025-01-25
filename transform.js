@@ -14,7 +14,6 @@ export class PuzzleReader extends Transform {
 		const puzzles = chunk.split("\n");
 
 		if (this.#corruptedPuzzle) {
-			console.log(this.#corruptedPuzzle);
 			puzzles[0] = this.#corruptedPuzzle + puzzles[0];
 			this.#corruptedPuzzle = 0;
 		}
