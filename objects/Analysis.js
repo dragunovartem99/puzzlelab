@@ -2,19 +2,19 @@ import { PuzzleStream } from "./PuzzleStream.js";
 
 export class Analysis {
 	#dataset;
-	_actions = new Set();
+	_instructions = new Set();
 
 	constructor(dataset) {
 		this.#dataset = dataset;
 	}
 
-	addAction(action) {
-		this._actions.add(action);
+	addInstruction(action) {
+		this._instructions.add(action);
 		return this;
 	}
 
 	_analyze(puzzle) {
-		this._actions.forEach((action) => action.perform(puzzle));
+		this._instructions.forEach((instruction) => instruction.perform(puzzle));
 	}
 
 	async run() {

@@ -17,6 +17,6 @@ export class AnalysisFiltered extends Analysis {
 			return;
 		}
 
-		this._actions.forEach((action) => action.perform(puzzle));
+		this._instructions.forEach((instruction) => instruction.perform(puzzle));
 	}
 }
