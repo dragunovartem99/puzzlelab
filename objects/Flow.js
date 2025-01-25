@@ -11,11 +11,7 @@ export class Flow {
 		this.#stages = stages;
 	}
 
-	run() {
-		pipeline(
-			this.#dataset.read(),
-			...this.#stages,
-			this.#writeStream
-		);
+	async run() {
+		await pipeline( this.#dataset.read(), ...this.#stages, this.#writeStream);
 	}
 }

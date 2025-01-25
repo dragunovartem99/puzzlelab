@@ -2,13 +2,15 @@ import { Transform } from "node:stream";
 
 export class Stage extends Transform {
 	#corruptedPuzzle = null;
+	#performance;
 
-	constructor() {
+	constructor(performance) {
 		super({ objectMode: true });
+		this.#performance = performance;
 	}
 
 	_getPuzzles(puzzles) {
-		return puzzles;
+		return this.#performance ? this.#performance(puzzles) : puzzles;
 	}
 
 	_transform(chunk, _, callback) {
