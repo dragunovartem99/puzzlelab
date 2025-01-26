@@ -1,33 +1,32 @@
 import { Transform } from "node:stream";
 
 export class Stage extends Transform {
-	#performance;
-	#headers = null;
-	#corruptedPuzzle = null;
+	#action;
 
-	constructor(performance) {
-		super({ objectMode: true });
-		this.#performance = performance;
+	#headers = null;
+	#cutPuzzle = null;
+
+	constructor(action) {
+		super({ writableObjectMode: true });
+		this.#action = action;
 	}
 
 	_getPuzzles(puzzles) {
-		return this.#performance ? this.#performance(puzzles) : puzzles;
+		return this.#action ? this.#action(puzzles) : puzzles;
 	}
 
 	_transform(chunk, _, callback) {
-		const puzzles = chunk.split("\n");
+		const newLine = "\n";
+		const puzzles = chunk.split(newLine);
 
-		this.#headers ?? (this.#headers = puzzles.shift());
-
-		if (this.#corruptedPuzzle) {
-			puzzles[0] = this.#corruptedPuzzle + puzzles[0];
-			this.#corruptedPuzzle = null;
+		if (this.#cutPuzzle) {
+			puzzles[0] = this.#cutPuzzle.concat(puzzles[0]);
 		}
 
-		this.#corruptedPuzzle = puzzles.pop();
+		this.#cutPuzzle = puzzles.pop();
+		this.#headers ??= puzzles.shift();
 
-		this.push(this._getPuzzles(puzzles).join("\n") + "\n");
-
+		this.push(this._getPuzzles(puzzles).join(newLine).concat(newLine));
 		callback();
 	}
 }
