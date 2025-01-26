@@ -7,7 +7,7 @@ export default async function (dataset, payload) {
 	let count = 0;
 
 	const analysis = new Analysis().addFilter(new Requirements(payload).getFilter());
-	analysis.on("puzzle", () => count++);
+	analysis.on("puzzles", (puzzles) => count += puzzles.length);
 
 	await new Flow(dataset, new Stage(analysis)).run();
 
