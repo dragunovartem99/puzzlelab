@@ -1,18 +1,18 @@
 import { Transform } from "node:stream";
 
 export class Stage extends Transform {
-	#action;
+	#analysis;
 
 	#headers = null;
 	#cutPuzzle = null;
 
-	constructor(action) {
+	constructor(analysis) {
 		super({ writableObjectMode: true });
-		this.#action = action;
+		this.#analysis = analysis;
 	}
 
 	#getPuzzles(puzzles) {
-		return this.#action ? this.#action(puzzles) : puzzles;
+		return this.#analysis ? this.#analysis.do(puzzles) : puzzles;
 	}
 
 	#pushPuzzles(puzzles, newLine) {
