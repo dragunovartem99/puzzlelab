@@ -10,15 +10,13 @@ import { Requirements } from "./objects/Requirements.js";
 // - List of puzzles found
 // This lab can be rendered on a frontend (digarams / list)
 async function createLab(dataset, payload) {
-	const requirements = new Requirements(payload);
-	const mock = { perform() {} };
-
-	await new Lab(dataset, requirements, mock).run();
-	return "End";
+	const lab = new Lab(dataset, new Requirements(payload));
+	await lab.run();
 }
+
 createLab(mainDataset, {
 	goal: "count",
-	themes: "mateIn1",
+	themes: "mateIn5",
 	sortType: "hardest",
 	rating: undefined,
 }).then(console.log);

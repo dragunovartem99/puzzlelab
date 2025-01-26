@@ -1,14 +1,19 @@
-import { Lab } from "../objects/Lab.js";
+import { Flow } from "../objects/Flow.js";
+import { Stage } from "../objects/Stage.js";
 import { Requirements } from "../objects/Requirements.js";
-import { Instruction } from "../objects/Instruction.js";
 
 export default async function (dataset, payload) {
 	let count = 0;
 
-	const instruction = new Instruction(() => count++);
-	const requirements = new Requirements(payload);
+	const filter = new Requirements(payload).getFilter();
 
-	await new Lab(dataset, requirements, instruction).run();
+	function action(puzzles) {
+		return puzzles.filter((puzzle) => {
+			filter.check(puzzle) && count++;
+		});
+	}
+
+	await new Flow(dataset, new Stage(action)).run();
 
 	return count;
 }

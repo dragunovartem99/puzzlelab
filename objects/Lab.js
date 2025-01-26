@@ -1,20 +1,27 @@
-import { AnalysisFiltered } from "./AnalysisFiltered.js";
+import { createWriteStream } from "node:fs";
+import { Flow } from "./Flow.js";
+import { Stage } from "./Stage.js";
 
 export class Lab {
 	#dataset;
 	#requirements;
-	#instruction;
 
-	constructor(dataset, requirements, instruction) {
+	constructor(dataset, requirements) {
 		this.#dataset = dataset;
 		this.#requirements = requirements;
-		this.#instruction = instruction;
+	}
+
+	#getAction() {
+		const filter = this.#requirements.getFilter();
+
+		return function (puzzles) {
+			return puzzles.filter((puzzle) => filter.check(puzzle));
+		};
 	}
 
 	async run() {
-		return await new AnalysisFiltered(this.#dataset)
-			.addInstruction(this.#instruction)
-			.addFilter(this.#requirements.getFilter())
+		return await new Flow(this.#dataset, new Stage(this.#getAction()))
+			.setWriteStream(createWriteStream("./lab.csv"))
 			.run();
 	}
 }

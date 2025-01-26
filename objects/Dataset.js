@@ -8,6 +8,6 @@ export class Dataset {
 	}
 
 	read() {
-		return createReadStream(this.#path);
+		return createReadStream(this.#path, { encoding: "ascii" });
 	}
 }
