@@ -11,8 +11,13 @@ export class Stage extends Transform {
 		this.#action = action;
 	}
 
-	_getPuzzles(puzzles) {
+	#getPuzzles(puzzles) {
 		return this.#action ? this.#action(puzzles) : puzzles;
+	}
+
+	#pushPuzzles(puzzles, newLine) {
+		if (!puzzles.length) return;
+		this.push(puzzles.join(newLine).concat(newLine));
 	}
 
 	_transform(chunk, _, callback) {
@@ -26,7 +31,7 @@ export class Stage extends Transform {
 		this.#cutPuzzle = puzzles.pop();
 		this.#headers ??= puzzles.shift();
 
-		this.push(this._getPuzzles(puzzles).join(newLine).concat(newLine));
+		this.#pushPuzzles(this.#getPuzzles(puzzles), newLine);
 		callback();
 	}
 }
