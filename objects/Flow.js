@@ -13,6 +13,7 @@ export class Flow {
 
 	setWriteStream(writeStream) {
 		this.#writeStream = writeStream;
+		return this;
 	}
 
 	async run() {
