@@ -13,9 +13,8 @@ export class Analysis extends EventEmitter {
 	}
 
 	do(puzzles) {
-		const filteredPuzzles = this.#filters.length ? this.#getFilteredPuzzles(puzzles) : puzzles;
+		const filteredPuzzles = this.#getFilteredPuzzles(puzzles);
 
-		filteredPuzzles.forEach((puzzle) => this.emit("puzzle", puzzle));
 		this.emit("puzzles", filteredPuzzles);
 
 		return filteredPuzzles;
