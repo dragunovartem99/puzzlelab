@@ -10,6 +10,6 @@ github:
     - dragunovartem99
 format:
     - short-title
-    - title-length=100
+    - title-length=60
 tags:
     - puzzle

@@ -3,7 +3,7 @@ import { mainDataset } from "./datasets.js";
 import { Lab } from "./objects/Lab.js";
 import { Requirements } from "./objects/Requirements.js";
 
-// TODO: #1 Implement main API
+// TODO: #3 Implement main API
 // Client picks .csv dataset (lichess) and requirements
 // Application serves the client with "lab" (analysis):
 // - Statistics (bound to rating)
