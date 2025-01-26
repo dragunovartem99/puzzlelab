@@ -1,4 +1,4 @@
-import { mainDatasetHead } from "./datasets.js";
+import { mainDataset } from "./datasets.js";
 import { Flow } from "./objects/Flow.js";
 import { Stage } from "./objects/Stage.js";
 
@@ -9,6 +9,6 @@ function performance(puzzles) {
 	return puzzles;
 }
 
-await new Flow(mainDatasetHead, new Stage(performance)).run();
+await new Flow(mainDataset, new Stage(performance)).run();
 
 console.log(count);

@@ -1,20 +1,21 @@
 import { pipeline } from "node:stream/promises";
+import { createWriteStream } from "node:fs";
 
 export class Flow {
 	#dataset;
 	#stages;
-	#writeStream;
+	#writeStream = createWriteStream("/dev/null");
 
 	constructor(dataset, ...stages) {
 		this.#dataset = dataset;
 		this.#stages = stages;
 	}
 
-	setWriteStream() {
+	setWriteStream(writeStream) {
 		this.#writeStream = writeStream;
 	}
 
 	async run() {
-		await pipeline(this.#dataset.read(), ...this.#stages);
+		await pipeline(this.#dataset.read(), ...this.#stages, this.#writeStream);
 	}
 }
