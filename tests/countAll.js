@@ -4,12 +4,12 @@ import { Stage } from "../objects/Stage.js";
 export default async function (dataset) {
 	let count = 0;
 
-	function performance(puzzles) {
+	function action(puzzles) {
 		count += puzzles.length;
 		return puzzles;
 	}
 
-	await new Flow(dataset, new Stage(performance)).run();
+	await new Flow(dataset, new Stage(action)).run();
 
 	return count;
 }

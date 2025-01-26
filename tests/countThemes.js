@@ -7,13 +7,13 @@ export default async function (dataset, payload) {
 
 	const filter = new Requirements(payload).getFilter();
 
-	function performance(puzzles) {
+	function action(puzzles) {
 		return puzzles.filter((puzzle) => {
 			filter.check(puzzle) && count++;
 		});
 	}
 
-	await new Flow(dataset, new Stage(performance)).run();
+	await new Flow(dataset, new Stage(action)).run();
 
 	return count;
 }
