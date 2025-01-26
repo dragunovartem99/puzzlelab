@@ -6,7 +6,7 @@ export default async function (dataset) {
 	let count = 0;
 
 	const analysis = new Analysis();
-	analysis.on("puzzles", (puzzles) => count += puzzles.length);
+	analysis.on("puzzles", (puzzles) => (count += puzzles.length));
 
 	await new Flow(dataset, new Stage(analysis)).run();
 
